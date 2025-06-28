@@ -1,26 +1,94 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #e8e8e4;
+  --color-secondary: #81b29a;
+  --color-accent: #e07a5f;
+  --color-background: #e8e8e4c9;
+  --color-text: #1d1e25;
+  --color-warning: #f94144;
+  --color-success: #90be6d;
+  --color-primary-rgb: 34, 40, 49;
+  --color-accent-rgb: 252, 163, 17;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html.dark {
+  --color-primary: #3d405b;
+  --color-secondary: #a0aec0;   
+  --color-accent: #9dcfbf;     
+  --color-background: #3d405b;
+  --color-text: #e8e8e4;
+  --color-warning: #f94144;
+  --color-success: #90be6d;
+  --color-primary-rgb: 26, 26, 26;
+  --color-accent-rgb: 242, 161, 84;
+}
+.dark-mode-text-shadow {
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.dark .text-secondary {
+  color: var(--color-secondary);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+html.dark .text-accent {
+  color: var(--color-accent);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+
+.hover-soft-glow:hover {
+  box-shadow: 0 0 15px 3px var(--color-accent);
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem; 
+  }
+
+  .goal-title {
+    font-size: 1rem; 
+  }
+
+  .goal-date {
+    font-size: 0.75rem;
+  }
+}
+
+html, body, #__next {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+@keyframes toast-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-5deg);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.2) rotate(5deg);
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(-3deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7) rotate(5deg);
+  }
+}
+
+.animate-toast-pop {
+  animation: toast-pop 3s ease-in-out forwards;
 }
